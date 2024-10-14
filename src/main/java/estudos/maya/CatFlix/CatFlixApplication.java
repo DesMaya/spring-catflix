@@ -1,18 +1,10 @@
 package estudos.maya.CatFlix;
 
-import estudos.maya.CatFlix.service.ConsumoApi;
-import estudos.maya.CatFlix.model.DadosEpisodio;
-import estudos.maya.CatFlix.model.DadosSerie;
-import estudos.maya.CatFlix.model.DadosTemporada;
-import estudos.maya.CatFlix.service.ConverteDados;
+import estudos.maya.CatFlix.principal.Principal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
-import java.util.List;
-
-//https://www.omdbapi.com/?t=matrix&apikey=a10bdbc
 @SpringBootApplication
 public class CatFlixApplication implements CommandLineRunner {
 	public static void main(String[] args){
@@ -21,6 +13,7 @@ public class CatFlixApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		/*
 		var consumoApi = new ConsumoApi();
 		var conversor = new ConverteDados();
 
@@ -39,5 +32,8 @@ public class CatFlixApplication implements CommandLineRunner {
 		}
 
 		temporadas.forEach(System.out::println);
+		*/
+		Principal principal = new Principal();
+		principal.exibeMenu();
 	}
 }
