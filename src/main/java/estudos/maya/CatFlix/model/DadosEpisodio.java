@@ -1,4 +1,4 @@
-package estudos.maya.model;
+package estudos.maya.CatFlix.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

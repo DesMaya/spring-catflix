@@ -1,10 +1,10 @@
 package estudos.maya.CatFlix;
 
 import estudos.maya.CatFlix.service.ConsumoApi;
-import estudos.maya.model.DadosEpisodio;
-import estudos.maya.model.DadosSerie;
-import estudos.maya.model.DadosTemporada;
-import estudos.maya.service.ConverteDados;
+import estudos.maya.CatFlix.model.DadosEpisodio;
+import estudos.maya.CatFlix.model.DadosSerie;
+import estudos.maya.CatFlix.model.DadosTemporada;
+import estudos.maya.CatFlix.service.ConverteDados;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

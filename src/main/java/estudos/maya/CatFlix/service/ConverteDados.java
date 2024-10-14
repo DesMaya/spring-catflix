@@ -1,4 +1,4 @@
-package estudos.maya.service;
+package estudos.maya.CatFlix.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
