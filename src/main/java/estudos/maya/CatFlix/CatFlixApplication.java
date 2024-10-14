@@ -1,6 +1,7 @@
 package estudos.maya.CatFlix;
 
 import estudos.maya.CatFlix.service.ConsumoApi;
+import estudos.maya.model.DadosEpisodio;
 import estudos.maya.model.DadosSerie;
 import estudos.maya.service.ConverteDados;
 import org.springframework.boot.CommandLineRunner;
@@ -21,5 +22,9 @@ public class CatFlixApplication implements CommandLineRunner {
 		var json = consumoApi.obterDados("https://www.omdbapi.com/?t=friends&apikey=a10bdbc");
 		var dadosSerie = conversor.obterDados(json, DadosSerie.class);
 		System.out.println(dadosSerie);
+
+		json = consumoApi.obterDados("https://www.omdbapi.com/?t=friends&Season=4&Episode=8&apikey=a10bdbc");
+		var dadosEpisodio = conversor.obterDados(json, DadosEpisodio.class);
+		System.out.println(dadosEpisodio);
 	}
 }
