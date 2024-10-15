@@ -3,6 +3,7 @@ package estudos.maya.CatFlix.principal;
 import estudos.maya.CatFlix.model.DadosEpisodio;
 import estudos.maya.CatFlix.model.DadosSerie;
 import estudos.maya.CatFlix.model.DadosTemporada;
+import estudos.maya.CatFlix.model.Episodio;
 import estudos.maya.CatFlix.service.ConsumoApi;
 import estudos.maya.CatFlix.service.ConverteDados;
 
@@ -35,10 +36,12 @@ public class Principal {
             temporadas.add(dadosTemporada);
         }
 
+        /*
         //temporadas.forEach( temporada -> temporada.episodios().forEach( episodio -> System.out.println(episodio.titulo())));
         List<DadosEpisodio> dadosEpisodios =  temporadas.stream()
                 .flatMap(t -> t.episodios().stream())
                 .collect(Collectors.toList());
+
 
         System.out.println("\nTop 5 melhores episódios da " + dadosSerie.titulo());
         dadosEpisodios.stream()
@@ -46,6 +49,14 @@ public class Principal {
                 .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed())
                 .limit(5)
                 .forEach(System.out::println);
+        */
+
+        List<Episodio> episodios = temporadas.stream()
+                .flatMap(t -> t.episodios().stream()
+                        .map(d -> new Episodio(t.numero(), d)))
+                .collect(Collectors.toList());
+
+        episodios.forEach(System.out::println);
 
     }
 }
