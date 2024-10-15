@@ -31,7 +31,10 @@ public class Principal {
             var dadosTemporada = conversor.obterDados(json, DadosTemporada.class);
             temporadas.add(dadosTemporada);
         }
-        temporadas.forEach(System.out::println);
+
+        temporadas.forEach( temporada -> temporada.episodios().forEach( episodio -> {
+            System.out.println(episodio.titulo());
+        }) );
 
     }
 }
