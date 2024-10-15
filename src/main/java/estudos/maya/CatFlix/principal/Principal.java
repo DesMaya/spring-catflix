@@ -37,6 +37,7 @@ public class Principal {
             var dadosTemporada = conversor.obterDados(json, DadosTemporada.class);
             temporadas.add(dadosTemporada);
         }
+        
 
         List<Episodio> episodios = temporadas.stream()
                 .flatMap(t -> t.episodios().stream()
@@ -44,11 +45,13 @@ public class Principal {
                 .collect(Collectors.toList());
         episodios.forEach(System.out::println);
 
+
         System.out.println("\nOs 5 melhores episódios da série " + dadosSerie.titulo());
         episodios.stream()
                 .sorted(Comparator.comparing(Episodio::getAvaliacao).reversed())
                 .limit(5)
                 .forEach(System.out::println);
+
 
         System.out.println("\nA partir de qual ano você deseja ver os episódios? ");
         var ano = sc.nextInt();
