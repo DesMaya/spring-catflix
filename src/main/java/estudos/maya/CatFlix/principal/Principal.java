@@ -6,10 +6,10 @@ import estudos.maya.CatFlix.model.Episodio;
 import estudos.maya.CatFlix.service.ConsumoApi;
 import estudos.maya.CatFlix.service.ConverteDados;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Principal {
@@ -42,11 +42,11 @@ public class Principal {
         //episodios.forEach(System.out::println);
 
 
-        System.out.println("\nOs 5 melhores episódios da série " + dadosSerie.titulo());
-        episodios.stream()
-                .sorted(Comparator.comparing(Episodio::getAvaliacao).reversed())
-                .limit(5)
-                .forEach(System.out::println);
+//        System.out.println("\nOs 5 melhores episódios da série " + dadosSerie.titulo());
+//        episodios.stream()
+//                .sorted(Comparator.comparing(Episodio::getAvaliacao).reversed())
+//                .limit(5)
+//                .forEach(System.out::println);
 
 
 //        System.out.println("\nA partir de qual ano você deseja ver os episódios? ");
@@ -66,15 +66,23 @@ public class Principal {
 //                    );
 //                });
 
-        System.out.println("\nDigite um trecho de título que deseja buscar: ");
-        var trechoTitulo = sc.nextLine();
-        Optional<Episodio> episodioBuscado = episodios.stream()
-                .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
-                .findFirst();
+//        System.out.println("\nDigite um trecho de título que deseja buscar: ");
+//        var trechoTitulo = sc.nextLine();
+//        Optional<Episodio> episodioBuscado = episodios.stream()
+//                .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
+//                .findFirst();
+//
+//        if (episodioBuscado.isPresent()) {
+//            System.out.println("Episódio encontrado!");
+//            System.out.printf("Temporada: %s Episódio: %s", episodioBuscado.get().getTemporada(), episodioBuscado.get().getTitulo());
+//        } else System.out.println("Episodio não encontrado");
 
-        if (episodioBuscado.isPresent()) {
-            System.out.println("Episódio encontrado!");
-            System.out.printf("Temporada: %s Episódio: %s", episodioBuscado.get().getTemporada(), episodioBuscado.get().getTitulo());
-        } else System.out.println("Episodio não encontrado");
+        Map<Integer, Double> avaliacoesTemporada = episodios.stream()
+                .filter(e -> e.getAvaliacao() > 0.0)
+                .collect(Collectors.groupingBy(Episodio::getTemporada,
+                        Collectors.averagingDouble(Episodio::getAvaliacao)));
+
+        System.out.println(avaliacoesTemporada);
+
     }
 }
