@@ -84,5 +84,15 @@ public class Principal {
 
         System.out.println(avaliacoesTemporada);
 
+
+        DoubleSummaryStatistics est = episodios.stream()
+                .filter(e -> e.getAvaliacao() > 0.0)
+                .collect(Collectors.summarizingDouble(Episodio::getAvaliacao));
+        System.out.printf("""
+        Média: %.2f
+        Melhor episódio: %.2f
+        Pior episódio: %.2f
+        Quantidade %d
+        """, est.getAverage(), est.getMax(), est.getMin(), est.getCount());
     }
 }
