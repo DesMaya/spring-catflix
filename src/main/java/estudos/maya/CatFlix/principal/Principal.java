@@ -2,10 +2,12 @@ package estudos.maya.CatFlix.principal;
 
 import estudos.maya.CatFlix.model.DadosSerie;
 import estudos.maya.CatFlix.model.DadosTemporada;
+import estudos.maya.CatFlix.model.Serie;
 import estudos.maya.CatFlix.service.ConsumoApi;
 import estudos.maya.CatFlix.service.ConverteDados;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Principal {
     private final Scanner sc = new Scanner(System.in);
@@ -78,7 +80,13 @@ public class Principal {
     }
 
     private void listarSeriesBuscadas() {
-        dadosSerie.forEach(System.out::println);
+        List<Serie> series = new ArrayList<>();
+        series = dadosSerie.stream()
+                .map(Serie::new)
+                .toList();
+        series.stream()
+                .sorted(Comparator.comparing(Serie::getGenero))
+                .forEach(System.out::println);
     }
 
 }
