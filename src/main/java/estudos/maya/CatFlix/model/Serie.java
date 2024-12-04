@@ -1,7 +1,6 @@
 package estudos.maya.CatFlix.model;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-import estudos.maya.CatFlix.service.ConsultaChatGPT;
+//import estudos.maya.CatFlix.service.ConsultaChatGPT;
 
 import java.util.OptionalDouble;
 
