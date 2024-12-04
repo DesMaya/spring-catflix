@@ -2,6 +2,8 @@ package estudos.maya.CatFlix.model;
 
 //import estudos.maya.CatFlix.service.ConsultaChatGPT;
 
+import estudos.maya.CatFlix.traducao.ConsultaMyMemory;
+
 import java.util.OptionalDouble;
 
 public class Serie {
@@ -19,7 +21,8 @@ public class Serie {
         this.avaliacao = OptionalDouble.of(Double.valueOf(dadosSerie.avaliacao())).orElse(0.0);
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.atores = dadosSerie.atores();
-        this.sinopse = dadosSerie.sinopse();//ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
+        this.sinopse = ConsultaMyMemory.obterTraducao(dadosSerie.sinopse()).trim();
+        //ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
         this.poster = dadosSerie.poster();
     }
 
