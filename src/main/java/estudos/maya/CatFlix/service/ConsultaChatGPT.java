@@ -1,4 +1,4 @@
-package estudos.maya.CatFlix.service;
+/*package estudos.maya.CatFlix.service;
 
 import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.service.OpenAiService;
@@ -17,4 +17,4 @@ public class ConsultaChatGPT {
         var resposta = service.createCompletion(requisicao);
         return resposta.getChoices().get(0).getText();
     }
-}
+}*/
