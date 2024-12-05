@@ -3,12 +3,23 @@ package estudos.maya.CatFlix.model;
 //import estudos.maya.CatFlix.service.ConsultaChatGPT;
 
 import estudos.maya.CatFlix.traducao.ConsultaMyMemory;
+import jakarta.persistence.*;
 
 import java.util.OptionalDouble;
 
+@Entity
+@Table(name = "series")
 public class Serie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(unique = true)
     private String titulo;
+
+    @Enumerated(EnumType.STRING)
     private Categoria genero;
+
     private Integer totalTemporadas;
     private Double avaliacao;
     private String atores;
@@ -24,6 +35,19 @@ public class Serie {
         this.sinopse = ConsultaMyMemory.obterTraducao(dadosSerie.sinopse()).trim();
         //ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
         this.poster = dadosSerie.poster();
+    }
+
+    public Serie() {
+
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
