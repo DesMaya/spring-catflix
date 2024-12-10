@@ -5,14 +5,17 @@ package estudos.maya.CatFlix.model;
 import estudos.maya.CatFlix.traducao.ConsultaMyMemory;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.OptionalDouble;
 
 @Entity
 @Table(name = "series")
 public class Serie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(unique = true)
     private String titulo;
@@ -26,6 +29,9 @@ public class Serie {
     private String sinopse;
     private String poster;
 
+    @Transient
+    private List<Episodio> episodios = new ArrayList<>();
+
     public Serie (DadosSerie dadosSerie) {
         this.titulo = dadosSerie.titulo();
         this.totalTemporadas = dadosSerie.totalTemporadas();
@@ -37,16 +43,19 @@ public class Serie {
         this.poster = dadosSerie.poster();
     }
 
-    public Serie() {
-
+    public List<Episodio> getEpisodios() {
+        return episodios;
     }
 
+    public void setEpisodios(List<Episodio> episodios) {
+        this.episodios = episodios;
+    }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
