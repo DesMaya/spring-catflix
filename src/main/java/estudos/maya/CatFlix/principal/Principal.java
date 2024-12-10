@@ -89,10 +89,12 @@ public class Principal {
     }
 
     private void listarSeriesBuscadas() {
-        List<Serie> series = new ArrayList<>();
+        List<Serie> series = series = repositorio.findAll();
+        /*
         series = dadosSerie.stream()
                 .map(Serie::new)
                 .toList();
+         */
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
