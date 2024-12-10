@@ -3,6 +3,7 @@ package estudos.maya.CatFlix.principal;
 import estudos.maya.CatFlix.model.DadosSerie;
 import estudos.maya.CatFlix.model.DadosTemporada;
 import estudos.maya.CatFlix.model.Serie;
+import estudos.maya.CatFlix.repository.SerieRepository;
 import estudos.maya.CatFlix.service.ConsumoApi;
 import estudos.maya.CatFlix.service.ConverteDados;
 
@@ -18,6 +19,12 @@ public class Principal {
     private final String API_KEY = "&apikey=a10bdbc";
 
     private List<DadosSerie> dadosSerie = new ArrayList<>();
+
+    private final SerieRepository repositorio;
+
+    public Principal(SerieRepository repositorio) {
+        this.repositorio = repositorio;
+    }
 
     public void exibeMenu() {
         var opcao = -1;
@@ -55,6 +62,8 @@ public class Principal {
 
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
+        Serie serie = new Serie(dados);
+        repositorio.save(serie);
         System.out.println(dados);
     }
 
