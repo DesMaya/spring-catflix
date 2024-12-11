@@ -29,7 +29,7 @@ public class Serie {
     private String sinopse;
     private String poster;
 
-    @Transient
+    @OneToMany
     private List<Episodio> episodios = new ArrayList<>();
 
     public Serie() {}
