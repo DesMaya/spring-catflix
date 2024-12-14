@@ -1,9 +1,6 @@
 package estudos.maya.CatFlix.principal;
 
-import estudos.maya.CatFlix.model.DadosSerie;
-import estudos.maya.CatFlix.model.DadosTemporada;
-import estudos.maya.CatFlix.model.Episodio;
-import estudos.maya.CatFlix.model.Serie;
+import estudos.maya.CatFlix.model.*;
 import estudos.maya.CatFlix.repository.SerieRepository;
 import estudos.maya.CatFlix.service.ConsumoApi;
 import estudos.maya.CatFlix.service.ConverteDados;
@@ -39,6 +36,7 @@ public class Principal {
                     4 - Buscar série por título
                     5 - Buscar séries por ator
                     6 - Top 5 Séries
+                    7 - Buscar séries por categoria
                     
                     0 - Sair                                 
                     """;
@@ -65,6 +63,9 @@ public class Principal {
                     break;
                 case 6:
                     buscarTop5Series();
+                    break;
+                case 7:
+                    buscarSeriesPorCategoria();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -167,6 +168,15 @@ public class Principal {
         List<Serie> seriesTop = repositorio.findTop5ByOrderByAvaliacaoDesc();
         seriesTop.forEach(s ->
                 System.out.println(s.getTitulo() + " avaliação: " + s.getAvaliacao()));
+    }
+
+    private void buscarSeriesPorCategoria(){
+        System.out.println("Deseja buscar séries de qual categoria/gênero? ");
+        var nomeGenero = sc.nextLine();
+        Categoria categoria = Categoria.fromPortuges(nomeGenero);
+        List<Serie> seriesPorCategoria = repositorio.findByGenero(categoria);
+        System.out.println("Series da categoria: " + nomeGenero);
+        seriesPorCategoria.forEach(System.out::println);
     }
 
 }
