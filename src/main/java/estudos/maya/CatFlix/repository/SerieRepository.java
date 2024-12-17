@@ -1,6 +1,7 @@
 package estudos.maya.CatFlix.repository;
 
 import estudos.maya.CatFlix.model.Categoria;
+import estudos.maya.CatFlix.model.Episodio;
 import estudos.maya.CatFlix.model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,4 +17,7 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     //List<Serie> findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(int totalTemporadas, double avaliacao);
     @Query("select s from Serie s WHERE s.totalTemporadas <= :totalTemporadas AND s.avaliacao >= :avaliacao")
     List<Serie> seriesPorTemporadaEAValiacao(int totalTemporadas, double avaliacao);
+
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE e.titulo ILIKE %:trechoEpisodio%")
+    List<Episodio> episodiosPorTrecho(String trechoEpisodio);
 }
