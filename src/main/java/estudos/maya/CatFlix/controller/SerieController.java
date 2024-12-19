@@ -30,6 +30,7 @@ public class SerieController {
                 .collect(Collectors.toList());
     }
 
+
 }
 /*
     Long id,
