@@ -1,6 +1,7 @@
 package estudos.maya.CatFlix.service;
 
 import estudos.maya.CatFlix.dto.SerieDTO;
+import estudos.maya.CatFlix.model.Serie;
 import estudos.maya.CatFlix.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,15 @@ public class SerieService {
     private SerieRepository repository;
 
     public List<SerieDTO> obterTodasAsSeries() {
-        return repository.findAll().stream()
+        return converteDados(repository.findAll());
+    }
+
+    public List<SerieDTO> obterTop5Series() {
+        return converteDados(repository.findTop5ByOrderByAvaliacaoDesc());
+    }
+
+    private List<SerieDTO> converteDados (List<Serie> series){
+        return series.stream()
                 .map(s -> new SerieDTO(
                         s.getId(),
                         s.getTitulo(),
