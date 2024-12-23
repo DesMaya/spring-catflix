@@ -2,6 +2,7 @@ package estudos.maya.CatFlix.service;
 
 import estudos.maya.CatFlix.dto.EpisodioDTO;
 import estudos.maya.CatFlix.dto.SerieDTO;
+import estudos.maya.CatFlix.model.Categoria;
 import estudos.maya.CatFlix.model.Serie;
 import estudos.maya.CatFlix.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,5 +84,10 @@ public class SerieService {
                         e.getTitulo()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    public List<SerieDTO> obterSeriesPorCategoria(String nomeGenero) {
+        Categoria categoria = Categoria.fromPortuges(nomeGenero);
+        return converteDados(repository.findByGenero(categoria));
     }
 }
